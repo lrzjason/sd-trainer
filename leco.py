@@ -200,11 +200,11 @@ def main(config):
             if global_steps % save_steps == 0 and not global_steps == total_steps:
                 print("セーブしますぅ")
                 os.makedirs(os.path.join("trained","networks"), exist_ok=True)
-                network.save_weights(os.path.join("trained","networks",config.model.output_name), torch.float16)
+                network.save_weights(os.path.join("trained","networks",f'{config.model.output_name}_{global_steps}.safetensors'), torch.float16)
                 
     print("セーブしますぅ")
     os.makedirs(os.path.join("trained","networks"), exist_ok=True)
-    network.save_weights(os.path.join("trained","networks",config.model.output_name), torch.float16)
+    network.save_weights(os.path.join("trained","networks",f'{config.model.output_name}_finished.safetensors'), torch.float16)
 
 if __name__ == "__main__":
     config = OmegaConf.load(sys.argv[1])
